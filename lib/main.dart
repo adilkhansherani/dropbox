@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:dropbox/app_styles.dart';
+import 'package:dropbox/profile_screen.dart';
+import 'package:dropbox/size_config.dart';
+import 'package:flutter_svg/svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,119 +11,303 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProfileScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+// ignore: must_be_immutable
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+  List<Color> folderColors = [
+    kLightBlueColor,
+    kLightYellowColor,
+    kLightRedColor,
+    kLightGreenColor,
+    kLightBlueColor,
+    kLightYellowColor,
+    kLightRedColor,
+    kLightGreenColor,
+    kLightBlueColor,
+    kLightYellowColor,
+    kLightRedColor,
+    kLightGreenColor,
+    kLightBlueColor,
+    kLightYellowColor,
+    kLightRedColor,
+    kLightGreenColor,
+  ];
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  List<Color> textColors = [
+    kBlueColor,
+    kYellowColor,
+    kRedColor,
+    kGreenColor,
+    kBlueColor,
+    kYellowColor,
+    kRedColor,
+    kGreenColor,
+    kBlueColor,
+    kYellowColor,
+    kRedColor,
+    kGreenColor,
+    kBlueColor,
+    kYellowColor,
+    kRedColor,
+    kGreenColor,
+  ];
 
-  final String title;
+  List<String> folderIconColors = [
+    'folder_icon_blue.svg',
+    'folder_icon_yellow.svg',
+    'folder_icon_red.svg',
+    'folder_icon_green.svg',
+    'folder_icon_blue.svg',
+    'folder_icon_yellow.svg',
+    'folder_icon_red.svg',
+    'folder_icon_green.svg',
+    'folder_icon_blue.svg',
+    'folder_icon_yellow.svg',
+    'folder_icon_red.svg',
+    'folder_icon_green.svg',
+    'folder_icon_blue.svg',
+    'folder_icon_yellow.svg',
+    'folder_icon_red.svg',
+    'folder_icon_green.svg',
+  ];
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  List<String> moreIconColors = [
+    'more_vertical_icon_blue.svg',
+    'more_vertical_icon_yellow.svg',
+    'more_vertical_icon_red.svg',
+    'more_vertical_icon_green.svg',
+    'more_vertical_icon_blue.svg',
+    'more_vertical_icon_yellow.svg',
+    'more_vertical_icon_red.svg',
+    'more_vertical_icon_green.svg',
+    'more_vertical_icon_blue.svg',
+    'more_vertical_icon_yellow.svg',
+    'more_vertical_icon_red.svg',
+    'more_vertical_icon_green.svg',
+    'more_vertical_icon_blue.svg',
+    'more_vertical_icon_yellow.svg',
+    'more_vertical_icon_red.svg',
+    'more_vertical_icon_green.svg',
+  ];
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  List<String> folderNames = [
+    'Mobile apps',
+    'SVG icons',
+    'Prototypes',
+    'Avatars',
+    'Mobile apps',
+    'SVG icons',
+    'Prototypes',
+    'Avatars',
+    'Mobile apps',
+    'SVG icons',
+    'Prototypes',
+    'Avatars',
+    'Mobile apps',
+    'SVG icons',
+    'Prototypes',
+    'Avatars',
+  ];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  List<String> folderDates = [
+    'December 20.2020',
+    'December 14.2020',
+    'December 20.2020',
+    'December 14.2020',
+    'December 20.2020',
+    'December 14.2020',
+    'December 20.2020',
+    'December 14.2020',
+    'December 20.2020',
+    'December 14.2020',
+    'December 20.2020',
+    'December 14.2020',
+    'December 20.2020',
+    'December 14.2020',
+    'December 20.2020',
+    'December 14.2020',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    SizeConfig().init(context);
+
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      floatingActionButton: SizedBox(
+        width: 60,
+        height: 60,
+        child: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: kPurpleColor,
+          child: const Icon(
+            Icons.add,
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          padding: EdgeInsets.symmetric(
+            horizontal: kPaddingHorizontal,
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Your dropbox',
+                    style: kQuestrialSemibold.copyWith(
+                      color: kBlackColor,
+                      fontSize: SizeConfig.blockSizeHorizontal! * 6,
+                    ),
+                  ),
+                  SvgPicture.asset('assets/menu_icon.svg'),
+                ],
+              ),
+              SizedBox(
+                height: SizeConfig.blockSizeVertical! * 4,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(
+                      kBorderRadius,
+                    ),
+                    borderSide: const BorderSide(
+                      width: 1,
+                      color: kGreyColor,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(
+                      kBorderRadius,
+                    ),
+                    borderSide: const BorderSide(
+                      width: 1,
+                      color: kGreyColor,
+                    ),
+                  ),
+                  prefixIcon: Container(
+                    width: 24,
+                    height: 24,
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset(
+                      'assets/search_icon.svg',
+                    ),
+                  ),
+                  hintText: 'Search folder',
+                  hintStyle: kQuestrialMedium.copyWith(
+                    fontSize: SizeConfig.blockSizeHorizontal! * 4,
+                    color: kDarkGreyColor,
+                  ),
+                ),
+                style: kQuestrialMedium.copyWith(
+                  fontSize: SizeConfig.blockSizeHorizontal! * 4,
+                  color: kDarkGreyColor,
+                ),
+              ),
+              SizedBox(
+                height: SizeConfig.blockSizeVertical! * 4,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Recent',
+                        style: kQuestrialSemibold.copyWith(
+                          fontSize: SizeConfig.blockSizeHorizontal! * 4,
+                          color: kLightBlackColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: SizeConfig.blockSizeHorizontal! * 2.5,
+                      ),
+                      SvgPicture.asset('assets/arrow_down_icon.svg'),
+                    ],
+                  ),
+                  SvgPicture.asset('assets/sort_icon.svg'),
+                ],
+              ),
+              SizedBox(
+                height: SizeConfig.blockSizeVertical! * 3,
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: SizeConfig.blockSizeHorizontal! * 2,
+                  mainAxisSpacing: SizeConfig.blockSizeHorizontal! * 2,
+                  mainAxisExtent: 107,
+                ),
+                itemCount: folderColors.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 0.5 * kPaddingHorizontal,
+                    ),
+                    decoration: BoxDecoration(
+                      color: folderColors[index],
+                      borderRadius: BorderRadius.circular(kBorderRadius),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/${folderIconColors[index]}',
+                            ),
+                            SvgPicture.asset(
+                              'assets/${moreIconColors[index]}',
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical! * 1,
+                        ),
+                        Text(
+                          folderNames[index],
+                          style: kQuestrialSemibold.copyWith(
+                            fontSize: SizeConfig.blockSizeHorizontal! * 4,
+                            color: textColors[index],
+                          ),
+                        ),
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical! * 0.3,
+                        ),
+                        Text(
+                          folderDates[index],
+                          style: kQuestrialRegular.copyWith(
+                            fontSize: SizeConfig.blockSizeHorizontal! * 2.5,
+                            color: textColors[index],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
